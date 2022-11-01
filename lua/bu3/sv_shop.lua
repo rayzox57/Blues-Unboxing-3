@@ -72,6 +72,13 @@ function BU3.Shop.Purchase(ply, itemID, amount)
 		ply:PS2_AddStandardPoints(-(item.price * amount))
 	end
 
+	if BU3.Config.Currency == "zpn" then
+		if zpn and zpn.Candy.ReturnPoints(ply) < amount then
+			return false, BU3.Shop.ENUMS.notEnought
+		end
+		zpn.Candy.TakePoints(ply, item.price * amount)
+	end
+
 	if BU3.Config.Currency == "custom" then
 		if BU3.Config.CanAfford(ply, item.price * amount) then
 			return false, BU3.Shop.ENUMS.notEnought

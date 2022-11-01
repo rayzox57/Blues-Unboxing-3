@@ -43,9 +43,19 @@ If true, this will print in everyones chat when someone unboxes, false it will n
 BU3.Config.ChatNotifications = true
 
 --[[-------------------------------------------------------------------------
-This is the currency to use for the store, "ps1", "ps2", "darkrp", "custom"
+This is the currency to use for the store, "ps1", "ps2", "darkrp", "zpn", "custom"
 ---------------------------------------------------------------------------]]
 BU3.Config.Currency = "darkrp"
+
+--[[-------------------------------------------------------------------------
+Custom Symbol Currency
+---------------------------------------------------------------------------]]
+BU3.Config.Symbol = "$"
+
+--[[-------------------------------------------------------------------------
+Left Position Currency
+---------------------------------------------------------------------------]]
+BU3.Config.SymbolLeft = true
 
 --[[-------------------------------------------------------------------------
 These are the admin ranks, capable of creating, delete and modify items as

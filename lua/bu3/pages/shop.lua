@@ -80,6 +80,10 @@ function PAGE:Load(contentFrame)
 			money = LocalPlayer().PS2_Wallet.points
 		end
 
+		if BU3.Config.Currency == "zpn" then
+			money = LocalPlayer():GetNWInt("zpn.money",0)
+		end
+
 		if BU3.Config.Currency == "custom" then
 			money = BU3.Config.GetAmount(ply)
 		end
@@ -104,6 +108,10 @@ function PAGE:Load(contentFrame)
 					money = LocalPlayer().PS2_Wallet.points
 				end
 
+				if BU3.Config.Currency == "zpn" then
+					money = LocalPlayer():GetNWInt("zpn.money",0)
+				end
+
 				if BU3.Config.Currency == "custom" then
 					money = BU3.Config.GetAmount(ply)
 				end
@@ -119,11 +127,16 @@ function PAGE:Load(contentFrame)
 				end
 				draw.SimpleText(name,BU3.UI.Fonts["small_bold"],85, h/2, Color(255,255,255,100), 0, 1)
 
+				local Currency = BU3.Config.Symbol or '$'
+				local leftC = BU3.Config.SymbolLeft == true and Currency or ''
+				local rightC = BU3.Config.SymbolLeft == true and '' or Currency
+
+
 				--Draw the price
 				if money < itemData.price * s.quantity then 
-					draw.SimpleText("$"..string.Comma(itemData.price * s.quantity),BU3.UI.Fonts["small_bold"],w/2, h/2, Color(185,46,46,255), 1, 1)
+					draw.SimpleText(leftC .. string.Comma(itemData.price * s.quantity) .. rightC,BU3.UI.Fonts["small_bold"],w/2, h/2, Color(185,46,46,255), 1, 1)
 				else
-					draw.SimpleText("$"..string.Comma(itemData.price * s.quantity),BU3.UI.Fonts["small_bold"],w/2, h/2, Color(255,255,255,100), 1, 1)				
+					draw.SimpleText(leftC .. string.Comma(itemData.price * s.quantity) .. rightC,BU3.UI.Fonts["small_bold"],w/2, h/2, Color(255,255,255,100), 1, 1)				
 				end
 
 			end

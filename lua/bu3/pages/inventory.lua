@@ -142,8 +142,12 @@ function PAGE:Load(contentFrame)
 							name = string.sub(name,1,12).."..." 
 						end
 
+						local Currency = BU3.Config.Symbol or '$'
+						local leftC = BU3.Config.SymbolLeft == true and Currency or ''
+						local rightC = BU3.Config.SymbolLeft == true and '' or Currency
+
 						draw.SimpleText(name, BU3.UI.Fonts["small_reg"], w/2, 17, Color(200,200,200,255),1 ,1)
-						draw.SimpleText("$"..string.Comma(item.price), BU3.UI.Fonts["small_bold"], w/2, h - 18, Color(200,200,200,255),1 ,1)
+						draw.SimpleText(leftC .. string.Comma(item.price) .. rightC, BU3.UI.Fonts["small_bold"], w/2, h - 18, Color(200,200,200,255),1 ,1)
 					end
 
 					--Create the item preview

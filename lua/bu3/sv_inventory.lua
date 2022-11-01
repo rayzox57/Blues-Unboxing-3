@@ -200,13 +200,18 @@ function PLAYER:BU3UseItem(itemID)
 		end
 	end	
 
+	if item.type == "zpnCandy" then
+		zpn.Candy.AddPoints(self,points)
+		self:SendLua([[notification.AddLegacy("[UNBOX] Added Candy Points !", NOTIFY_HINT, 5)]])
+	end
+
 	if item.type == "points1item" then
 		print("Giving item class name ", item.className )
 		self:PS_GiveItem(item.className)
 		self:SendLua([[notification.AddLegacy("[UNBOX] Added Pointshop Item!", NOTIFY_HINT, 5)]])
 	end	
 
-	if item.type == "points2item" then        
+	if item.type == "points2item" then
 		local itemClass = Pointshop2.GetItemClassByPrintName( item.className )
         if not itemClass then
             error( "Invalid item " .. tostring( item.className ) )

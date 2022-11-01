@@ -38,7 +38,8 @@ BU3.Items.Types = {
 	points2pre = 6, --The item is points (pointshop2 premium)
 	points1item = 7, --The item is an item for pointshop1
 	points2item = 8, --The item is a pointshop2 item
-	entity = 9 --The item is a basic entity
+	entity = 9, --The item is a basic entity
+	zpnCandy = 10 -- Zero's Pumpkin Night Candy
 }
 
 local ITEM = {}
