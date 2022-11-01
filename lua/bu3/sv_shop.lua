@@ -110,7 +110,7 @@ net.Receive("BU3:PurchaseItem", function(len, ply)
 	local worked, result = BU3.Shop.Purchase(ply, itemID, amount)
 
 	if result == BU3.Shop.ENUMS.notEnought then
-		ply:SendLua([[notification.AddLegacy("You don't have enough to purchase this!", NOTIFY_ERROR, 5)]])
+		ply:SendLua('notification.AddLegacy("' .. BU3.Lang.Get('NO_ENOUGH') .. '", NOTIFY_ERROR, 5)')
 	end
 end)
 

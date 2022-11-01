@@ -27,7 +27,7 @@ function PAGE:Load(contentFrame, caseID)
 		textPanel:SetSize(400, 75)
 		textPanel:SetPos(self.mirrorPanel:GetWide()/2 - 200,9)
 		textPanel.Paint = function(s , w , h)
-			draw.SimpleText("ERROR : CASE INVALID", BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+			draw.SimpleText(BU3.Lang.Get("ECI"), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 		end
 
 		return		
@@ -37,7 +37,7 @@ function PAGE:Load(contentFrame, caseID)
 	textPanel:SetSize(400, 75)
 	textPanel:SetPos(self.mirrorPanel:GetWide()/2 - 200,9)
 	textPanel.Paint = function(s , w , h)
-		draw.SimpleText("Preview: "..case.name, BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("PREVIEW_S",case.name), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 	end
 
 	local scrollWindowPanel = vgui.Create("DPanel", self.mirrorPanel)
@@ -76,7 +76,7 @@ function PAGE:Load(contentFrame, caseID)
 			draw.RoundedBox(4, 1, 1, w - 2, h - 2, Color(40,40,45, 255))
 
 			--Draw the item name
-			local name = "Preview"
+			local name = BU3.Lang.Get("PREVIEW")
 			if string.len(name) >= 15 then
 				name = string.sub(name,1,12).."..." 
 			end
@@ -130,7 +130,7 @@ function PAGE:Load(contentFrame, caseID)
 
 	--Unbox button
 	--350
-	local unboxButton = BU3.UI.Elements.CreateStandardButton("*PREVIEW*", self.mirrorPanel, function()
+	local unboxButton = BU3.UI.Elements.CreateStandardButton(string.format("*%s*",BU3.Lang.Get("PREVIEW")), self.mirrorPanel, function()
 
 	end)
 	unboxButton:SetSize(160, 50)
@@ -140,7 +140,7 @@ function PAGE:Load(contentFrame, caseID)
 	textPanel2:SetSize(600, 75)
 	textPanel2:SetPos(self.mirrorPanel:GetWide()/2 - 300,420)
 	textPanel2.Paint = function(s , w , h)
-		draw.SimpleText("Items contained inside: "..case.name, BU3.UI.Fonts["med_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("ICI_S",case.name), BU3.UI.Fonts["med_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 	end
 
 	local itemContainedPanel = vgui.Create("DScrollPanel", self.mirrorPanel)

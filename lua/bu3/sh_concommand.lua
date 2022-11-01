@@ -25,13 +25,13 @@ if SERVER then
 		print(itemIDToGive)
 		print(item)
 		if item == nil then
-			print("[UNBOXING 3] Invalid item ID. Do bu3_items in console to get a list of items and their id's")
+			print(BU3.Lang.Get("INVALID_ITEM_ID"))
 			return
 		end
 
 		if sid == nil or sid == "" then
-			print("Invalid SteamID64")
-			print("The command works like this : bu3_give <STEAMID64> <ID> <AMOUNT>")
+			print(BU3.Lang.Get("INVALID_SID64"))
+			print(BU3.Lang.Get("CMD_WORKS_LIKE"))
 
 			return  
 		end
@@ -39,15 +39,15 @@ if SERVER then
 		local ply = player.GetBySteamID64(sid)
 
 		if ply == nil or not IsValid(ply) then
-			print("[UNBOXING 3] Failed to add item, either the player is not in the server or the steamid64 is wrong!")
-			print("The command works like this : bu3_give <STEAMID64> <ID> <AMOUNT>")
+			print(BU3.Lang.Get("FAILED_ADD_ITEM"))
+			print(BU3.Lang.Get("CMD_WORKS_LIKE"))
 			return
 		end
 
 		--Okay all checks passed, lets give them there item
 		ply:UB3AddItem(itemIDToGive, amount)
 
-		print("[UNBOXING 3] Give '"..ply:Name().."' item '"..itemIDToGive.."'")
+		print(BU3.Lang.Get("GIVE_S_ITEM_S",ply:Name(),itemIDToGive))
 
 	end )
 
@@ -64,14 +64,14 @@ if SERVER then
 		print(itemIDToGive)
 		print(item)
 		if item == nil then
-			print("[UNBOXING 3] Invalid item ID. Do bu3_items in console to get a list of items and their id's")
+			print(BU3.Lang.Get("INVALID_ITEM_ID"))
 			return
 		end
 
 		for k, v in pairs(player.GetAll()) do
 			--Okay all checks passed, lets give them there item
 			v:UB3AddItem(itemIDToGive, amount)
-			print("[UNBOXING 3] Give '"..v:Name().."' item '"..itemIDToGive.."'")
+			print(BU3.Lang.Get("GIVE_S_ITEM_S",v:Name(),itemIDToGive))
 		end
 	end )
 
@@ -85,8 +85,8 @@ if SERVER then
 		local amount = tonumber(args[3]) or 1
 
 		if sid == nil or sid == "" then
-			print("Invalid SteamID64")
-			print("This command will wipe a players inventory: bu3_wipe <STEAMID64>")
+			print(BU3.Lang.Get("INVALID_SID64"))
+			print(BU3.Lang.Get("COMMAND_WIPE_PL"))
 
 			return  
 		end
@@ -99,9 +99,9 @@ if SERVER then
 			ply:UB3SaveInventory()
 			ply:UB3UpdateClient()
 
-			print("[UNBOXING 3] Wiped players inventory!")
+			print(BU3.Lang.Get("WIPED_PLYS"))
 		else
-			print("[UNBOXING 3] Failed to wipe players inventory!")
+			print(BU3.Lang.Get("FAILED_WIPED_PLYS"))
 		end
 
 	end )

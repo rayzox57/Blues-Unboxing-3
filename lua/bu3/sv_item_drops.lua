@@ -10,7 +10,7 @@ timer.Create("bu3_item_drops", BU3.Config.DropTime * 60, 0, function()
 
 			print("user won")
 			v:UB3AddItem(item, 1)
-			v:ChatPrint("[UNBOXING] You received a random drop '"..BU3.Items.Items[item].name.."'")
+			v:ChatPrint(BU3.Lang.Get("RANDOM_DROP_S",BU3.Items.Items[item].name))
 
 		end 
 	end

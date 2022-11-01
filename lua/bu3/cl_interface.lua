@@ -478,19 +478,19 @@ function BU3.UI.Elements.PurchasePrompt(itemID, amount, onYes, onNo)
 		draw.RoundedBoxEx(6, 1,40, w - 2, h - 40 - 2,Color(27,27, 30, 255),false, false, true, true)
 
 		--Pain the item name
-		draw.SimpleText("Are you sure?",BU3.UI.Fonts["med_bold"],w/2, 20, Color(255,255,255,150), 1, 1)
+		draw.SimpleText(BU3.Lang.Get("ARE_U_SURE"),BU3.UI.Fonts["med_bold"],w/2, 20, Color(255,255,255,150), 1, 1)
 
-		draw.SimpleText("Price : "..string.Comma(item.price),BU3.UI.Fonts["small_reg"],205, 50 - 2, Color(255,255,255,150), 0, 0)
-		draw.SimpleText("Quantity : "..amount,BU3.UI.Fonts["small_reg"],205, 50 - 2 + 25, Color(255,255,255,150), 0, 0)
+		draw.SimpleText(BU3.Lang.Get("PRICE_S",string.Comma(item.price)),BU3.UI.Fonts["small_reg"],205, 50 - 2, Color(255,255,255,150), 0, 0)
+		draw.SimpleText(BU3.Lang.Get("QTY_S",tostring(amount)),BU3.UI.Fonts["small_reg"],205, 50 - 2 + 25, Color(255,255,255,150), 0, 0)
 
-		draw.SimpleText("Total Price : "..string.Comma(item.price * amount),BU3.UI.Fonts["small_reg"],205, 50 - 2 + 140 - 20, Color(255,255,255,150), 0, 0)
+		draw.SimpleText(BU3.Lang.Get("TPRICE_S",string.Comma(item.price * amount)),BU3.UI.Fonts["small_reg"],205, 50 - 2 + 140 - 20, Color(255,255,255,150), 0, 0)
 	end
 
-	local cancelButton = BU3.UI.Elements.CreateStandardButton("Cancel", p, function() if onNo then onNo() end p:Close() end)
+	local cancelButton = BU3.UI.Elements.CreateStandardButton(BU3.Lang.Get("CANCEL"), p, function() if onNo then onNo() end p:Close() end)
 	cancelButton:SetPos(10, 250 - 50)
 	cancelButton:SetSize((400/2) - 15, 40)
 
-	local purchaseButton = BU3.UI.Elements.CreateStandardButton("Purchase", p, function() if onYes then onYes() end p:Close() end)
+	local purchaseButton = BU3.UI.Elements.CreateStandardButton(BU3.Lang.Get("PURCHASE"), p, function() if onYes then onYes() end p:Close() end)
 	purchaseButton:SetPos(200 + 5, 250 - 50)
 	purchaseButton:SetSize((400/2) - 15, 40)
 
@@ -553,17 +553,17 @@ function BU3.UI.Elements.DeletePrompt(itemID)
 		draw.RoundedBoxEx(6, 1,40, w - 2, h - 40 - 2,Color(27,27, 30, 255),false, false, true, true)
 
 		--Paint the item name
-		draw.SimpleText("Are you sure?",BU3.UI.Fonts["med_bold"],w/2, 20, Color(255,255,255,150), 1, 1)
+		draw.SimpleText(BU3.Lang.Get("ARE_U_SURE"),BU3.UI.Fonts["med_bold"],w/2, 20, Color(255,255,255,150), 1, 1)
 
-		draw.SimpleText("Once you delete items",BU3.UI.Fonts["small_reg"],205, 50 - 2, Color(255,255,255,150), 0, 0)
-		draw.SimpleText("You should restart",BU3.UI.Fonts["small_reg"],205, 50 - 2 + 25, Color(255,255,255,150), 0, 0)
+		draw.SimpleText(BU3.Lang.Get("ONCE_DELETE_IT"),BU3.UI.Fonts["small_reg"],205, 50 - 2, Color(255,255,255,150), 0, 0)
+		draw.SimpleText(BU3.Lang.Get("YOU_SH_RESTART"),BU3.UI.Fonts["small_reg"],205, 50 - 2 + 25, Color(255,255,255,150), 0, 0)
 	end
 
-	local cancelButton = BU3.UI.Elements.CreateStandardButton("No", p, function() p:Close() end)
+	local cancelButton = BU3.UI.Elements.CreateStandardButton(BU3.Lang.Get("NO"), p, function() p:Close() end)
 	cancelButton:SetPos(10, 250 - 50)
 	cancelButton:SetSize((400/2) - 15, 40)
 
-	local purchaseButton = BU3.UI.Elements.CreateStandardButton("Yes", p, function() 
+	local purchaseButton = BU3.UI.Elements.CreateStandardButton(BU3.Lang.Get("YES"), p, function() 
 		net.Start("BU3:DeleteRegisteredItem")
 		net.WriteInt(itemID, 32)
 		net.SendToServer()
@@ -1126,7 +1126,7 @@ function BU3.UI.Elements.CreateContentFrame(parent)
 		end
 		self.loadedPageName = pagename
 		self.loadedPage = BU3.UI.GetPage(pagename)
-		if self.loadedPage == false then error("Failed to load page "..pagename..", the page does not exist!") end --Sanity check
+		if self.loadedPage == false then error(BU3.Lang.Get("FAILED_LOAD_PAGE",pagename)) end --Sanity check
 
 		self.loadedPage:Load(self, metaData)
 	end

@@ -11,7 +11,7 @@ function PAGE:Load(contentFrame)
 	textPanel:SetSize(400, 75)
 	textPanel:SetPos(self.mirrorPanel:GetWide()/2 - 200,9)
 	textPanel.Paint = function(s , w , h)
-		draw.SimpleText("UNBOXING 3", BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("UNBOX3"), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 	end
 
 	--Now do all the text info
@@ -26,7 +26,7 @@ function PAGE:Load(contentFrame)
 	if stats["gift"] ~= nil then
 		val = stats["gift"]
 	end
-	local otherVal = BU3.UI.Elements.CreateInfoPanel(val, "Numbers Of Items Traded", self.mirrorPanel)
+	local otherVal = BU3.UI.Elements.CreateInfoPanel(val, BU3.Lang.Get("NOTT"), self.mirrorPanel)
 	otherVal:SetPos(422, 85)
 	otherVal:SetSize(380, 130)
 
@@ -35,7 +35,7 @@ function PAGE:Load(contentFrame)
 	if stats["case"] ~= nil then
 		val = stats["case"]
 	end
-	local numOfItems = BU3.UI.Elements.CreateInfoPanel(val, "Opened Cases", self.mirrorPanel)
+	local numOfItems = BU3.UI.Elements.CreateInfoPanel(val, BU3.Lang.Get("OP"), self.mirrorPanel)
 	numOfItems:SetPos(25, 85 + 155)
 	numOfItems:SetSize(380, 130)
 
@@ -44,7 +44,7 @@ function PAGE:Load(contentFrame)
 	if stats["purchase"] ~= nil then
 		val = stats["purchase"]
 	end
-	local itemsSold = BU3.UI.Elements.CreateInfoPanel(val, "Items Purchased", self.mirrorPanel)
+	local itemsSold = BU3.UI.Elements.CreateInfoPanel(val, BU3.Lang.Get("IP"), self.mirrorPanel)
 	itemsSold:SetPos(422, 85 + 155)
 	itemsSold:SetSize(380, 130)
 
@@ -52,7 +52,7 @@ function PAGE:Load(contentFrame)
 	textPanel:SetSize(400, 75)
 	textPanel:SetPos(25, 85 + 155  +120)
 	textPanel.Paint = function(s , w , h)
-		draw.SimpleText("Activity", BU3.UI.Fonts["med_bold"], 2, h/2, Color(255,255,255,50),0 ,1)
+		draw.SimpleText(BU3.Lang.Get("ACTIVITY"), BU3.UI.Fonts["med_bold"], 2, h/2, Color(255,255,255,50),0 ,1)
 	end
 
 	local panel = vgui.Create("DPanel", self.mirrorPanel)

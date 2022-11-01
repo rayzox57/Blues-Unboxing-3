@@ -27,7 +27,7 @@ function PAGE:Load(contentFrame, caseID)
 		textPanel:SetSize(400, 75)
 		textPanel:SetPos(self.mirrorPanel:GetWide()/2 - 200,9)
 		textPanel.Paint = function(s , w , h)
-			draw.SimpleText("ERROR : CASE INVALID", BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+			draw.SimpleText(BU3.Lang.Get("ECI"), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 		end
 
 		return		
@@ -37,7 +37,7 @@ function PAGE:Load(contentFrame, caseID)
 	textPanel:SetSize(400, 75)
 	textPanel:SetPos(self.mirrorPanel:GetWide()/2 - 200,9)
 	textPanel.Paint = function(s , w , h)
-		draw.SimpleText("Unboxing: "..case.name, BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("UNBOXING_S",case.name), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 	end
 
 	local scrollWindowPanel = vgui.Create("DPanel", self.mirrorPanel)
@@ -169,7 +169,7 @@ function PAGE:Load(contentFrame, caseID)
 
 	--Unbox button
 	--350
-	local unboxButton = BU3.UI.Elements.CreateStandardButton("Open Case", self.mirrorPanel, function()
+	local unboxButton = BU3.UI.Elements.CreateStandardButton(BU3.Lang.Get("OPEN_CASE"), self.mirrorPanel, function()
 		net.Start("BU3:AttemptUnbox")
 		net.WriteInt(case.itemID, 32)
 		net.SendToServer()
@@ -181,7 +181,7 @@ function PAGE:Load(contentFrame, caseID)
 	textPanel2:SetSize(600, 75)
 	textPanel2:SetPos(self.mirrorPanel:GetWide()/2 - 300,420)
 	textPanel2.Paint = function(s , w , h)
-		draw.SimpleText("Items contained inside: "..case.name, BU3.UI.Fonts["med_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("ITEM_CONT_INSIDE",case.name), BU3.UI.Fonts["med_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 	end
 
 	local itemContainedPanel = vgui.Create("DScrollPanel", self.mirrorPanel)

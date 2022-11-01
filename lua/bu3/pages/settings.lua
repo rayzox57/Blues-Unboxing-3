@@ -11,21 +11,21 @@ function PAGE:Load(contentFrame)
 	textPanel:SetSize(400, 75)
 	textPanel:SetPos(self.mirrorPanel:GetWide()/2 - 200,9)
 	textPanel.Paint = function(s , w , h)
-		draw.SimpleText("SETTINGS", BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("SETTINGS"), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 	end
 
 	local createCaseKeyText = vgui.Create("DPanel", self.mirrorPanel)
 	createCaseKeyText:SetSize(400, 75)
 	createCaseKeyText:SetPos((self.mirrorPanel:GetWide()/4) - 200, 165 - 32)
 	createCaseKeyText.Paint = function(s , w , h)
-		draw.SimpleText("CREATE CASE/KEY", BU3.UI.Fonts["med_bold"], w/2, h/2, Color(255,255,255,200),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("CREATECASEKEY"), BU3.UI.Fonts["med_bold"], w/2, h/2, Color(255,255,255,200),1 ,1)
 	end
 
 	local createItemText = vgui.Create("DPanel", self.mirrorPanel)
 	createItemText:SetSize(400, 75)
 	createItemText:SetPos(((self.mirrorPanel:GetWide()/4) * 3) - 200, 165 - 32)
 	createItemText.Paint = function(s , w , h)
-		draw.SimpleText("CREATE ITEM", BU3.UI.Fonts["med_bold"], w/2, h/2, Color(255,255,255,200),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("CREATEITEM"), BU3.UI.Fonts["med_bold"], w/2, h/2, Color(255,255,255,200),1 ,1)
 	end
 
 	local createCaseKeyDescription = vgui.Create("RichText", self.mirrorPanel)
@@ -35,7 +35,7 @@ function PAGE:Load(contentFrame)
 	function createCaseKeyDescription:PerformLayout()
 		self:SetFontInternal(BU3.UI.Fonts["smallest_reg"])
 	end
-	createCaseKeyDescription:SetText("This tool is used to create keys or cases. By using it you will have the ability to set an item's picture, color, name, description, ranks and alot more. Using the same tool you can create keys and determin which keys open which cases. You can also determin weater or not an item can be purchased in the store, and if so which ranks are allowed to purchase it.")
+	createCaseKeyDescription:SetText(BU3.Lang.Get("TOOLCREATE_DESC"))
 
 	local createItemDescription = vgui.Create("RichText", self.mirrorPanel)
 	createItemDescription:SetSize(315, 150)
@@ -44,15 +44,15 @@ function PAGE:Load(contentFrame)
 	function createItemDescription:PerformLayout()
 		self:SetFontInternal(BU3.UI.Fonts["smallest_reg"])
 	end
-	createItemDescription:SetText("This tool is used to create items. Item are unboxed in crates, using this tool you can create items and set there picture, color, name, description, ranks and alot more. To specify which items go in which crates please use the edit feature below and edit the crate, not the item itself. ")
+	createItemDescription:SetText(BU3.Lang.Get("TOOLCREATE_DESC2"))
 
-	local createCaseKeyButton = BU3.UI.Elements.CreateStandardButton("CREATE CASE/KEY", self.mirrorPanel, function(s)
+	local createCaseKeyButton = BU3.UI.Elements.CreateStandardButton(BU3.Lang.Get("CREATECASEKEY"), self.mirrorPanel, function(s)
 		contentFrame:LoadPage("casekeyselector")
 	end)
 	createCaseKeyButton:SetSize(180, 45)
 	createCaseKeyButton:SetPos((self.mirrorPanel:GetWide()/4) - (180/2), 385 - 32)
 
-	local createItemButton = BU3.UI.Elements.CreateStandardButton("CREATE ITEM", self.mirrorPanel, function(s)
+	local createItemButton = BU3.UI.Elements.CreateStandardButton(BU3.Lang.Get("CREATEITEM"), self.mirrorPanel, function(s)
 		contentFrame:LoadPage("itemselector")
 	end)
 	createItemButton:SetSize(180, 45)
@@ -190,8 +190,8 @@ function PAGE:Load(contentFrame)
 				end
 
 				draw.RoundedBox(4,0,0,w,h,Color(0,0,0,s.LerpValue / 1.5))
-				draw.SimpleText("Press to edit",BU3.UI.Fonts["small_reg"],w/2 - 1, h/2 + 1, Color(0,0,0,s.LerpValue), 1, 1)
-				draw.SimpleText("Press to edit",BU3.UI.Fonts["small_reg"],w/2, h/2,Color(222,222,222,s.LerpValue), 1, 1)
+				draw.SimpleText(BU3.Lang.Get("PRESS_EDIT"),BU3.UI.Fonts["small_reg"],w/2 - 1, h/2 + 1, Color(0,0,0,s.LerpValue), 1, 1)
+				draw.SimpleText(BU3.Lang.Get("PRESS_EDIT"),BU3.UI.Fonts["small_reg"],w/2, h/2,Color(222,222,222,s.LerpValue), 1, 1)
 			end
 			button.DoClick = function()
 				if item.type == "case" then
@@ -280,8 +280,8 @@ function PAGE:Load(contentFrame)
 				end
 
 				draw.RoundedBox(4,0,0,w,h,Color(0,0,0,s.LerpValue / 1.5))
-				draw.SimpleText("Press to edit",BU3.UI.Fonts["small_reg"],w/2 - 1, h/2 + 1, Color(0,0,0,s.LerpValue), 1, 1)
-				draw.SimpleText("Press to edit",BU3.UI.Fonts["small_reg"],w/2, h/2,Color(222,222,222,s.LerpValue), 1, 1)
+				draw.SimpleText(BU3.Lang.Get("PRESS_EDIT"),BU3.UI.Fonts["small_reg"],w/2 - 1, h/2 + 1, Color(0,0,0,s.LerpValue), 1, 1)
+				draw.SimpleText(BU3.Lang.Get("PRESS_EDIT"),BU3.UI.Fonts["small_reg"],w/2, h/2,Color(222,222,222,s.LerpValue), 1, 1)
 			end
 			button.DoClick = function()
 				if item.type == "weapon" then
@@ -327,7 +327,7 @@ function PAGE:Load(contentFrame)
 	end
 
 		--Search box for items in the bottom
-	local searchBox = BU3.UI.Elements.CreateTextEntry("Search...", self.mirrorPanel, true, true)
+	local searchBox = BU3.UI.Elements.CreateTextEntry(BU3.Lang.Get("SEARCH"), self.mirrorPanel, true, true)
 	searchBox:SetPos(500, 80)
 	searchBox:SetSize(305, 40)
 	searchBox:SetUpdateOnType(true)

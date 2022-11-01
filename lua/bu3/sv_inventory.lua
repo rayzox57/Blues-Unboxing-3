@@ -12,6 +12,7 @@ local PLAYER = FindMetaTable("Player")
 function PLAYER:UB3InitializeInventory()
 	self._ub3inv = {} --Inventory
 	self:UB3LoadInventory()
+	print(BU3.Lang.Get('SETUP_PLY_INV_S',self:Name()))
 	print("[UNBOXING 3] Set up inventory for player '"..self:Name().."'")
 end
 
@@ -61,7 +62,7 @@ function PLAYER:BU3GiftItem(itemID, target)
 			target:UB3AddItem(itemID, 1)
 
 			net.Start("BU3:AddEventHistory")
-			net.WriteString("'"..self:Name().."' gifted '"..target:Name().."' a '"..BU3.Items.Items[itemID].name.."'")
+			net.WriteString(BU3.Lang.Get("S_GIFT_S_A_S",self:Name(),target:Name(),BU3.Items.Items[itemID].name))
 			net.Broadcast()
 
 			self:BU3AddStat("gift", 1)
@@ -141,7 +142,7 @@ function PLAYER:BU3UseItem(itemID)
 	--Check they have the rank required to use the item if its rank restricted
 	if item.rankRestricted == true then
 		if not table.HasValue(item.ranks, self:GetUserGroup()) then
-			self:SendLua([[notification.AddLegacy("You don't have the rank required to use this item!", NOTIFY_ERROR, 5)]])
+			self:SendLua('notification.AddLegacy("' .. BU3.Lang.Get("BAD_RANK") .. '", NOTIFY_ERROR, 5)')
 			return
 		end
 	end
@@ -180,35 +181,35 @@ function PLAYER:BU3UseItem(itemID)
 			temp:Setowning_ent(self)
 		end
 
-		self:SendLua([[notification.AddLegacy("[UNBOX] Entity Spawned!", NOTIFY_HINT, 5)]])
+		self:SendLua('notification.AddLegacy("' .. BU3.Lang.Get("ENT_SPAWNED")  .. '", NOTIFY_HINT, 5)')
 
 		return
 	end
 
 	if item.type == "points1" then
 		self:PS_GivePoints(tonumber(item.pointsAmount))
-		self:SendLua([[notification.AddLegacy("[UNBOX] Added Points!", NOTIFY_HINT, 5)]])
+		self:SendLua('notification.AddLegacy("' .. BU3.Lang.Get("ADDED_PTS") .. '", NOTIFY_HINT, 5)')
 	end
 
 	if item.type == "points2" then
 		if not item.premium then
 			self:PS2_AddStandardPoints(tonumber(item.pointsAmount), "Added from Unboxing 3")
-			self:SendLua([[notification.AddLegacy("[UNBOX] Added Points!", NOTIFY_HINT, 5)]])
+			self:SendLua('notification.AddLegacy("' .. BU3.Lang.Get("ADDED_PTS") .. '", NOTIFY_HINT, 5)')
 		else
 			self:PS2_AddPremiumPoints(tonumber(item.pointsAmount))
-			self:SendLua([[notification.AddLegacy("[UNBOX] Added Premium Points!", NOTIFY_HINT, 5)]])
+			self:SendLua('notification.AddLegacy("' .. BU3.Lang.Get("ADDED_PPTS") .. '", NOTIFY_HINT, 5)')
 		end
 	end	
 
 	if item.type == "zpnCandy" then
 		zpn.Candy.AddPoints(self,points)
-		self:SendLua([[notification.AddLegacy("[UNBOX] Added Candy Points !", NOTIFY_HINT, 5)]])
+		self:SendLua('notification.AddLegacy("' .. BU3.Lang.Get("ADDED_CANDY") .. '", NOTIFY_HINT, 5)')
 	end
 
 	if item.type == "points1item" then
 		print("Giving item class name ", item.className )
 		self:PS_GiveItem(item.className)
-		self:SendLua([[notification.AddLegacy("[UNBOX] Added Pointshop Item!", NOTIFY_HINT, 5)]])
+		self:SendLua('notification.AddLegacy("' .. BU3.Lang.Get("ADDED_PTS_ITEM") .. '", NOTIFY_HINT, 5)')
 	end	
 
 	if item.type == "points2item" then
@@ -218,12 +219,12 @@ function PLAYER:BU3UseItem(itemID)
         end
 
 		self:PS2_EasyAddItem( itemClass.className )
-		self:SendLua([[notification.AddLegacy("[UNBOX] Added Pointshop Item!", NOTIFY_HINT, 5)]])
+		self:SendLua('notification.AddLegacy("' .. BU3.Lang.Get("ADDED_PTS_ITEM") .. '", NOTIFY_HINT, 5)')
 	end	
 
 	if item.type == "money" then
 		self:addMoney(tonumber(item.moneyAmount))
-		self:SendLua([[notification.AddLegacy("[UNBOX] Added Money!", NOTIFY_HINT, 5)]])
+		self:SendLua('notification.AddLegacy("' .. BU3.Lang.Get("ADDED_MONEY") .. '", NOTIFY_HINT, 5)')
 	end	
 
 	if item.type == "lua" then

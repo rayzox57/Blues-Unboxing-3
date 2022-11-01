@@ -63,7 +63,7 @@ function PAGE:Load(contentFrame, itemData)
 	textPanel:SetSize(400, 75)
 	textPanel:SetPos(contentFrame:GetWide()/2 - 200,9)
 	textPanel.Paint = function(s , w , h)
-		draw.SimpleText("PS2 ITEM EDITOR", BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("PS2_ITEM_EDITOR"), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 	end
 
 	--local stepCounter = BU3.UI.Elements.CreateStepCounter(1, self.mirrorPanel)
@@ -128,7 +128,7 @@ function PAGE:Load(contentFrame, itemData)
 		previewImage.zoom = PAGE.ItemData.zoom
 	end
 
-	local nameEntry = BU3.UI.Elements.CreateTextEntry("Name", self.pages, false, false)
+	local nameEntry = BU3.UI.Elements.CreateTextEntry(BU3.Lang.Get("NAME"), self.pages, false, false)
 	nameEntry:SetPos(85, 340)
 	nameEntry:SetSize(300, 40)
 	nameEntry:SetText(PAGE.ItemData.name)
@@ -136,7 +136,7 @@ function PAGE:Load(contentFrame, itemData)
 		PAGE.ItemData.name = val
 	end
 
-	local descEntry = BU3.UI.Elements.CreateMultilineTextEntry("Description", self.pages, false)
+	local descEntry = BU3.UI.Elements.CreateMultilineTextEntry(BU3.Lang.Get("DESC"), self.pages, false)
 	descEntry:SetPos(85, 340 + 20 + 40)
 	descEntry:SetSize(300, 235 - 40 - 5 - 40 - 40)
 	descEntry:SetText(PAGE.ItemData.desc)
@@ -144,7 +144,7 @@ function PAGE:Load(contentFrame, itemData)
 		PAGE.ItemData.desc = val
 	end
 
-	local weaponClassEntry = BU3.UI.Elements.CreateTextEntry("PS2 Class Name", self.pages, false, false)
+	local weaponClassEntry = BU3.UI.Elements.CreateTextEntry(BU3.Lang.Get("PS2_CLASS_NAME"), self.pages, false, false)
 	weaponClassEntry:SetPos(85, 340 + 20 + 40 + (235 - 40 - 5 - 40) + 20 - 40)
 	weaponClassEntry:SetSize(300, 40)
 	weaponClassEntry:SetText(PAGE.ItemData.className)
@@ -218,7 +218,7 @@ function PAGE:Load(contentFrame, itemData)
 		end
 	end
 
-	imgurIDEntry = BU3.UI.Elements.CreateImgurEntry("Model Or ID", self.pages, function(id)
+	imgurIDEntry = BU3.UI.Elements.CreateImgurEntry(BU3.Lang.Get("MDL_ID"), self.pages, function(id)
 		if iconTypeSelect:GetValue() == "Model" then
 			previewImage:Remove()
 			previewImage = BU3.UI.Elements.ModelView(id, PAGE.ItemData.zoom, self.pages)
@@ -247,7 +247,7 @@ function PAGE:Load(contentFrame, itemData)
 	colorText:SetSize(300, 40)
 	colorText:SetPos(430, 340 + 20 + 40 + 42)
 	colorText.Paint = function(s , w , h)
-		draw.SimpleText("Icon Color", BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,255),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("ICONCOLOR"), BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,255),1 ,1)
 	end
 
 	--RGB color sliders
@@ -283,7 +283,7 @@ function PAGE:Load(contentFrame, itemData)
 	zoomText:SetSize(300, 40)
 	zoomText:SetPos(430,  485 + 25 + 25 + 25 + 4)
 	zoomText.Paint = function(s , w , h)
-		draw.SimpleText("Icon Zoom", BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,255),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("ICONZOOM"), BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,255),1 ,1)
 	end
 
 	local zoom = BU3.UI.Elements.CreateSlider(Color(215,215,215), 0, 200, self.pages, function(val)
@@ -298,7 +298,7 @@ function PAGE:Load(contentFrame, itemData)
 	giftText:SetSize(200, 40)
 	giftText:SetPos(baseOffset + 505 + 12, 299)
 	giftText.Paint = function(s , w , h)
-		draw.SimpleText("Can be gifted?", BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
+		draw.SimpleText(BU3.Lang.Get("CANBEGIFTED"), BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
 	end	
 ------------------------
 	local giftCheckBox = BU3.UI.Elements.CreateCheckBox(false, self.pages)
@@ -319,35 +319,35 @@ function PAGE:Load(contentFrame, itemData)
 	globalOptionsText:SetSize(200, 40)
 	globalOptionsText:SetPos(baseOffset + 400 - 100, 182 - 35)
 	globalOptionsText.Paint = function(s , w , h)
-		draw.SimpleText("Global Options", BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,50),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("GLOBALOPTIONS"), BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,50),1 ,1)
 	end
 
 	local permText = vgui.Create("DPanel", self.pages)
 	permText:SetSize(200, 40)
 	permText:SetPos(baseOffset + 235, 260 - 35)
 	permText.Paint = function(s , w , h)
-		draw.SimpleText("Permanent?", BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
+		draw.SimpleText(BU3.Lang.Get("PERMA"), BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
 	end	
 
 	local canBeBougthText = vgui.Create("DPanel", self.pages)
 	canBeBougthText:SetSize(200, 40)
 	canBeBougthText:SetPos(baseOffset + 235, 260)
 	canBeBougthText.Paint = function(s , w , h)
-		draw.SimpleText("Can be bought?", BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
+		draw.SimpleText(BU3.Lang.Get("CANBEBOUGHT"), BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
 	end	
 
 	local canBeSoldText = vgui.Create("DPanel", self.pages)
 	canBeSoldText:SetSize(200, 40)
 	canBeSoldText:SetPos(baseOffset + 235, 260 + 35)
 	canBeSoldText.Paint = function(s , w , h)
-		draw.SimpleText("Can be sold?", BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
+		draw.SimpleText(BU3.Lang.Get("CANBESOLD"), BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
 	end	
 
 	local priceText = vgui.Create("DPanel", self.pages)
 	priceText:SetSize(150, 40)
 	priceText:SetPos(baseOffset + 235, 260 + 35 + 35)
 	priceText.Paint = function(s , w , h)
-		draw.SimpleText("Price?", BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
+		draw.SimpleText(BU3.Lang.Get("PRICE"), BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
 	end	
 
 	local permCheckbox = BU3.UI.Elements.CreateCheckBox(false, self.pages)
@@ -386,7 +386,7 @@ function PAGE:Load(contentFrame, itemData)
 	priceText:SetSize(150, 40)
 	priceText:SetPos(baseOffset + 235, 340 + 30)
 	priceText.Paint = function(s , w , h)
-		draw.SimpleText("Restrict ranks", BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
+		draw.SimpleText(BU3.Lang.Get("RESTRICTRANKS"), BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
 	end	
 
 	local selectingRanks = BU3.UI.Elements.CreateCheckBox(true, self.pages)
@@ -398,7 +398,7 @@ function PAGE:Load(contentFrame, itemData)
 	end
 
 	--These are rank limitations
-	local rankEntry = BU3.UI.Elements.CreateMultilineTextEntry("Seperate ranks by a new line", self.pages, false)
+	local rankEntry = BU3.UI.Elements.CreateMultilineTextEntry(BU3.Lang.Get("SEPERATERBANL"), self.pages, false)
 	rankEntry:SetPos(baseOffset + 235, 370 + 30)
 	rankEntry:SetSize(340, 245 - 30)
 	local __string =""
@@ -414,7 +414,7 @@ function PAGE:Load(contentFrame, itemData)
 	---------------------------------------------------------------------------]]
  
 	--Creates a pop up to add an item
-	local createCaseButton = BU3.UI.Elements.CreateStandardButton("Create/Update PS2 Item", self.pages, function()
+	local createCaseButton = BU3.UI.Elements.CreateStandardButton(BU3.Lang.Get("CREATEUPPS2ITEM"), self.pages, function()
 		contentFrame:ShowLoader()
 		net.Start("BU3:CreateItem")
 		net.WriteTable(PAGE.ItemData)

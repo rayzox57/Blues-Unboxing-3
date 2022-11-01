@@ -59,7 +59,7 @@ function PAGE:Load(contentFrame, itemData)
 	textPanel:SetSize(400, 75)
 	textPanel:SetPos(contentFrame:GetWide()/2 - 200,9)
 	textPanel.Paint = function(s , w , h)
-		draw.SimpleText("CASE EDITOR", BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("CASEEDITOR"), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 	end
 
 	local stepCounter = BU3.UI.Elements.CreateStepCounter(3, self.mirrorPanel)
@@ -116,7 +116,7 @@ function PAGE:Load(contentFrame, itemData)
 	previewImage.placeholder = false
 	previewImage.zoom = PAGE.CaseData.zoom
 
-	local nameEntry = BU3.UI.Elements.CreateTextEntry("Name", self.pages, false, false)
+	local nameEntry = BU3.UI.Elements.CreateTextEntry(BU3.Lang.Get("NAME"), self.pages, false, false)
 	nameEntry:SetPos(85, 340)
 	nameEntry:SetSize(300, 40)
 	nameEntry.OnValueChange = function(s , val)
@@ -124,7 +124,7 @@ function PAGE:Load(contentFrame, itemData)
 	end
 	nameEntry:SetText(PAGE.CaseData.name)
 
-	local descEntry = BU3.UI.Elements.CreateMultilineTextEntry("Description", self.pages, false)
+	local descEntry = BU3.UI.Elements.CreateMultilineTextEntry(BU3.Lang.Get("DESC"), self.pages, false)
 	descEntry:SetPos(85, 340 + 20 + 40)
 	descEntry:SetSize(300, 235)
 	descEntry.OnValueChange = function(s , val)
@@ -132,7 +132,7 @@ function PAGE:Load(contentFrame, itemData)
 	end
 	descEntry:SetText(PAGE.CaseData.desc)
 
-	local option = "Default Case Icon"
+	local option = BU3.Lang.Get("DEFAULTCASEICON")
 	if PAGE.CaseData.iconID ~= "case" then
 		option = "Imgur ID"
 	end
@@ -146,10 +146,10 @@ function PAGE:Load(contentFrame, itemData)
 
 	local iconViewStartColor = Color(255,255,255,255)
 
-	iconTypeSelect:AddChoice("Default Case Icon")
+	iconTypeSelect:AddChoice(BU3.Lang.Get("DEFAULTCASEICON"))
 	iconTypeSelect:AddChoice("Imgur ID")
 	iconTypeSelect.OnSelect = function( panel, index, value )
-		if value == "Default Case Icon" then
+		if value == BU3.Lang.Get("DEFAULTCASEICON") then
 			PAGE.CaseData.iconID = "case"
 			imgurIDEntry.canEdit = false
 			previewImage:Remove()
@@ -191,7 +191,7 @@ function PAGE:Load(contentFrame, itemData)
 	colorText:SetSize(300, 40)
 	colorText:SetPos(430, 340 + 20 + 40 + 42)
 	colorText.Paint = function(s , w , h)
-		draw.SimpleText("Icon Color", BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,255),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("ICONCOLOR"), BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,255),1 ,1)
 	end
 
 	--RGB color sliders
@@ -227,7 +227,7 @@ function PAGE:Load(contentFrame, itemData)
 	zoomText:SetSize(300, 40)
 	zoomText:SetPos(430,  485 + 25 + 25 + 25 + 4)
 	zoomText.Paint = function(s , w , h)
-		draw.SimpleText("Icon Zoom", BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,255),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("ICONZOOM"), BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,255),1 ,1)
 	end
 
 	local zoom = BU3.UI.Elements.CreateSlider(Color(215,215,215), 0, 200, self.pages, function(val)
@@ -249,21 +249,21 @@ function PAGE:Load(contentFrame, itemData)
 	globalOptionsText:SetSize(200, 40)
 	globalOptionsText:SetPos(baseOffset + 400 - 100, 182)
 	globalOptionsText.Paint = function(s , w , h)
-		draw.SimpleText("Global Options", BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,50),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("GLOBALOPTIONS"), BU3.UI.Fonts["small_bold"], w/2, h/2, Color(210,210,210,50),1 ,1)
 	end
 
 	local canBeBougthText = vgui.Create("DPanel", self.pages)
 	canBeBougthText:SetSize(200, 40)
 	canBeBougthText:SetPos(baseOffset + 235, 260)
 	canBeBougthText.Paint = function(s , w , h)
-		draw.SimpleText("Can be bought?", BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
+		draw.SimpleText(BU3.Lang.Get("CANBEBOUGHT"), BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
 	end	
 
 	local priceText = vgui.Create("DPanel", self.pages)
 	priceText:SetSize(150, 40)
 	priceText:SetPos(baseOffset + 235, 260 + 35)
 	priceText.Paint = function(s , w , h)
-		draw.SimpleText("Price?", BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
+		draw.SimpleText(BU3.Lang.Get("PRICE"), BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
 	end	
 
 	local canBeBougthCheckbox = BU3.UI.Elements.CreateCheckBox(true, self.pages)
@@ -278,7 +278,7 @@ function PAGE:Load(contentFrame, itemData)
 	giftText:SetSize(200, 40)
 	giftText:SetPos(baseOffset + 235, 260 - 35)
 	giftText.Paint = function(s , w , h)
-		draw.SimpleText("Can be gifted?", BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
+		draw.SimpleText(BU3.Lang.Get("CANBEGIFTED"), BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
 	end	
 
 	local giftCheckBox = BU3.UI.Elements.CreateCheckBox(false, self.pages)
@@ -301,7 +301,7 @@ function PAGE:Load(contentFrame, itemData)
 	priceText:SetSize(150, 40)
 	priceText:SetPos(baseOffset + 235, 340 + 30)
 	priceText.Paint = function(s , w , h)
-		draw.SimpleText("Restrict ranks", BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
+		draw.SimpleText(BU3.Lang.Get("RESTRICTRANKS"), BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
 	end	
 
 	local selectingRanks = BU3.UI.Elements.CreateCheckBox(true, self.pages)
@@ -314,7 +314,7 @@ function PAGE:Load(contentFrame, itemData)
 	selectingRanks.state = PAGE.CaseData.rankRestricted
 
 	--These are rank limitations
-	local rankEntry = BU3.UI.Elements.CreateMultilineTextEntry("Seperate ranks by a new line", self.pages, false)
+	local rankEntry = BU3.UI.Elements.CreateMultilineTextEntry(BU3.Lang.Get("SEPERATERBANL"), self.pages, false)
 	rankEntry:SetPos(baseOffset + 235, 370 + 30)
 	rankEntry:SetSize(340, 245)
 	local __string =""
@@ -357,14 +357,14 @@ function PAGE:Load(contentFrame, itemData)
 	priceText:SetSize(150, 40)
 	priceText:SetPos(baseOffset + 180, 220)
 	priceText.Paint = function(s , w , h)
-		draw.SimpleText("Item", BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
+		draw.SimpleText(BU3.Lang.Get("ITEM"), BU3.UI.Fonts["small_bold"], 0, 0, Color(210,210,210,255),0 ,0)
 	end	
 
 	local priceText = vgui.Create("DPanel", self.pages)
 	priceText:SetSize(150, 40)
 	priceText:SetPos(baseOffset + 150 + (contentFrame:GetWide() - 300) - 150 - 50 + 20 - 32, 220)
 	priceText.Paint = function(s , w , h)
-		draw.SimpleText("Chance", BU3.UI.Fonts["small_bold"], w, 0, Color(210,210,210,255),2 ,0)
+		draw.SimpleText(BU3.Lang.Get("CHANCE"), BU3.UI.Fonts["small_bold"], w, 0, Color(210,210,210,255),2 ,0)
 	end
 
 	local itemListPanels = {}
@@ -481,7 +481,7 @@ function PAGE:Load(contentFrame, itemData)
 	recalculateChance()
 
 	--Creates a pop up to add an item
-	local addItemButton = BU3.UI.Elements.CreateStandardButton("Add Item", self.pages, function()
+	local addItemButton = BU3.UI.Elements.CreateStandardButton(BU3.Lang.Get("ADDITEM"), self.pages, function()
 		local f = vgui.Create("DFrame")
 		f:SetSize(200, 400)
 		f:Center()
@@ -496,7 +496,7 @@ function PAGE:Load(contentFrame, itemData)
 		itemList:SetPos(10, 10)
 		itemList:SetSize(200 - 20, 400 - 50 - 10)
 		itemList:SetMultiSelect( false )
-		itemList:AddColumn("Item Name")
+		itemList:AddColumn(BU3.Lang.Get("ITEMNAME"))
 
 		for k ,v in pairs(BU3.Items.Items) do
 			local p = itemList:AddLine(v.name.." ("..v.itemID..")")
@@ -508,7 +508,7 @@ function PAGE:Load(contentFrame, itemData)
 			f:Close()
 		end
 
-		local cancelButton = BU3.UI.Elements.CreateStandardButton("Cancel", f, function()
+		local cancelButton = BU3.UI.Elements.CreateStandardButton(BU3.Lang.Get("CANCEL"), f, function()
 			f:Close()
 		end)
 
@@ -520,7 +520,7 @@ function PAGE:Load(contentFrame, itemData)
 	addItemButton:SetPos(baseOffset + (contentFrame:GetWide()/2)  - 200 - 30, 250 + 400 + 15)
 
 	--Creates a pop up to add an item
-	local createCaseButton = BU3.UI.Elements.CreateStandardButton("Create/Update Case", self.pages, function()
+	local createCaseButton = BU3.UI.Elements.CreateStandardButton(BU3.Lang.Get("CUCASE"), self.pages, function()
 		contentFrame:ShowLoader()
 		net.Start("BU3:CreateItem")
 		net.WriteTable(PAGE.CaseData)

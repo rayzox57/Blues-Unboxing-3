@@ -52,7 +52,7 @@ function BU3.AdminMenu.OpenInventory(inv, user)
 		itemList:SetPos(5, 35)
 		itemList:SetSize(290, 400)
 		itemList:SetMultiSelect( false )
-		itemList:AddColumn("Item Name")
+		itemList:AddColumn(BU3.Lang.Get("ITEMNAME"))
 		itemList.OnRowSelected = function( lst, index, pnl )
 			selectedItemID = pnl.itemID
 		end
@@ -91,7 +91,7 @@ end
 function BU3.AdminMenu.OpenMenu()
 	local frame = vgui.Create("DFrame")
 	frame:SetSize(300,130)
-	frame:SetTitle("Blue's Unboxing 3 Admin")
+	frame:SetTitle(BU3.Lang.Get("BUNBOXADMIN"))
 	frame:Center()
 	frame:MakePopup()
 
@@ -102,7 +102,7 @@ function BU3.AdminMenu.OpenMenu()
 	local ComboBox = vgui.Create( "DComboBox", frame)
 	ComboBox:SetPos( 5, 50 )
 	ComboBox:SetSize( 300 - 10, 25 )
-	ComboBox:SetValue( "Select User..." )
+	ComboBox:SetValue(BU3.Lang.Get("SELECT_USER"))
 
 	for k, v in pairs(player.GetAll()) do
 		local p = ComboBox:AddChoice(v:Name(), v)
@@ -124,7 +124,7 @@ function BU3.AdminMenu.OpenMenu()
 	local view = vgui.Create("DButton", frame)
 	view:SetPos(155, 130 - 25)
 	view:SetSize(140, 20)
-	view:SetText("View Inventory")
+	view:SetText(BU3.Lang.Get("VIEW_INVENTORY"))
 	view.DoClick = function() 
 		if selected ~= nil then
 			net.Start("BU3:AdminOpenInventory")
@@ -138,7 +138,7 @@ function BU3.AdminMenu.OpenMenu()
 	local cancel = vgui.Create("DButton", frame)
 	cancel:SetPos(5, 130 - 25)
 	cancel:SetSize(140, 20)
-	cancel:SetText("Cancel")
+	cancel:SetText(BU3.Lang.Get("CANCEL"))
 	cancel.DoClick = function() frame:Close() end
 
 end

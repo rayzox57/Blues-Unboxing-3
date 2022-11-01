@@ -11,7 +11,7 @@ function PAGE:Load(contentFrame)
 	textPanel:SetSize(400, 75)
 	textPanel:SetPos(self.mirrorPanel:GetWide()/2 - 200,9)
 	textPanel.Paint = function(s , w , h)
-		draw.SimpleText("SHOP", BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("SHOP"), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 	end
 
 	--Stores the panel
@@ -120,7 +120,7 @@ function PAGE:Load(contentFrame)
 				draw.RoundedBox(4,0, 0, w, h, Color(40, 40, 45, 255))
 
 				--Paint the name
-				--draw.SimpleText("Name",BU3.UI.Fonts["smallest_reg"],200, 20, Color(255,255,255,25), 1, 1)
+				--draw.SimpleText(BU3.Lang.Get("NAME"),BU3.UI.Fonts["smallest_reg"],200, 20, Color(255,255,255,25), 1, 1)
 				local name = itemData.name
 				if string.len(name) >= 20 then
 					name = string.sub(name,1,17).."..."
@@ -176,7 +176,7 @@ function PAGE:Load(contentFrame)
 				else
 					draw.RoundedBox(4, 0, 0, w, h, Color(52 * 1.1, 52 * 1.1, 58 * 1.1))
 				end
-				draw.SimpleText("Buy",BU3.UI.Fonts["small_reg"], w/2, h/2, Color(255,255,255,100), 1, 1)
+				draw.SimpleText(BU3.Lang.Get("BUY"),BU3.UI.Fonts["small_reg"], w/2, h/2, Color(255,255,255,100), 1, 1)
 			end
 			buy.DoClick = function(s)
 				BU3.UI.Elements.PurchasePrompt(itemData.itemID, p.quantity, function()
@@ -258,14 +258,14 @@ function PAGE:Load(contentFrame)
 			noItemsText:SetSize(400, 75)
 			noItemsText:SetPos(scrollPanel:GetWide()/2 - 200,9)
 			noItemsText.Paint = function(s , w , h)
-				draw.SimpleText("No items found.", BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+				draw.SimpleText(BU3.Lang.Get("NIF"), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 			end
 		end
 
 	end
 
 	--Create the search box
-	local searchBox = BU3.UI.Elements.CreateTextEntry("Search...", self.mirrorPanel, true, true)
+	local searchBox = BU3.UI.Elements.CreateTextEntry(BU3.Lang.Get("SEARCH"), self.mirrorPanel, true, true)
 	searchBox:SetPos(520, 75)
 	searchBox:SetSize(280, 37)
 	searchBox:SetUpdateOnType(true)

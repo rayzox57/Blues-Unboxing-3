@@ -57,7 +57,7 @@ function PAGE:Load(contentFrame)
 	textPanel:SetSize(400, 75)
 	textPanel:SetPos(self.mirrorPanel:GetWide()/2 - 200,9)
 	textPanel.Paint = function(s , w , h)
-		draw.SimpleText("INVENTORY", BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+		draw.SimpleText(BU3.Lang.Get("INVENTORY"), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 	end
 
 	--Displays all the items from a users inventory, takes a filter if needed
@@ -113,7 +113,7 @@ function PAGE:Load(contentFrame)
 			noItemsText:SetSize(400, 75)
 			noItemsText:SetPos(scrollPanel:GetWide()/2 - 200,9)
 			noItemsText.Paint = function(s , w , h)
-				draw.SimpleText("No items found.", BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
+				draw.SimpleText(BU3.Lang.Get("NIF"), BU3.UI.Fonts["large_bold"], w/2, h/2, Color(255,255,255,20),1 ,1)
 			end		
 		else
 			local x = 0
@@ -194,7 +194,7 @@ function PAGE:Load(contentFrame)
 							end)
 						else
 							if item.type == "points2" or item.type == "points1" then
-								Menu:AddOption("Use Points", function()
+								Menu:AddOption(BU3.Lang.Get("USE_PTS"), function()
 									net.Start("BU3:UseItem")
 									net.WriteInt(item.itemID, 32)
 									net.SendToServer()
@@ -202,7 +202,7 @@ function PAGE:Load(contentFrame)
 							end
 
 							if item.type == "points2item" or item.type == "points1item" then
-								Menu:AddOption("Use Pointshop Item", function()
+								Menu:AddOption(BU3.Lang.Get("USE_PT_I"), function()
 									net.Start("BU3:UseItem")
 									net.WriteInt(item.itemID, 32)
 									net.SendToServer()
@@ -210,7 +210,7 @@ function PAGE:Load(contentFrame)
 							end
 
 							if item.type == "entity"  then
-								Menu:AddOption("Spawn Entity", function()
+								Menu:AddOption(BU3.Lang.Get("SPAWN_ENT"), function()
 									net.Start("BU3:UseItem")
 									net.WriteInt(item.itemID, 32)
 									net.SendToServer()
@@ -218,7 +218,7 @@ function PAGE:Load(contentFrame)
 							end
 
 							if item.type == "money" then
-								Menu:AddOption("Add Money", function()
+								Menu:AddOption(BU3.Lang.Get("ADD_MONEY"), function()
 									net.Start("BU3:UseItem")
 									net.WriteInt(item.itemID, 32)
 									net.SendToServer()
@@ -226,7 +226,7 @@ function PAGE:Load(contentFrame)
 							end
 
 							if item.type == "weapon" then
-								Menu:AddOption("Equip Weapon", function()
+								Menu:AddOption(BU3.Lang.Get("EQUIP_WPN"), function()
 									net.Start("BU3:UseItem")
 									net.WriteInt(item.itemID, 32)
 									net.SendToServer()
@@ -234,7 +234,7 @@ function PAGE:Load(contentFrame)
 							end
 
 							if item.type == "lua" then
-								Menu:AddOption("Use Item", function()
+								Menu:AddOption(BU3.Lang.Get("USE_ITEM"), function()
 									net.Start("BU3:UseItem")
 									net.WriteInt(item.itemID, 32)
 									net.SendToServer()
@@ -244,7 +244,7 @@ function PAGE:Load(contentFrame)
 
 						Menu:AddSpacer()
 
-						local sub = Menu:AddSubMenu("Gift To Player...", function() end)
+						local sub = Menu:AddSubMenu(BU3.Lang.Get("GIFT_PLY"), function() end)
 
 						for k , v in pairs(player.GetAll()) do
 							if v ~= LocalPlayer() then
@@ -264,7 +264,7 @@ function PAGE:Load(contentFrame)
 						end
 
 						Menu:AddSpacer()
-						Menu:AddOption("Delete Item", function()
+						Menu:AddOption(BU3.Lang.Get("DEL_ITEM"), function()
 							net.Start("BU3:DeleteItem")
 							net.WriteInt(item.itemID, 32)
 							net.SendToServer()
@@ -290,7 +290,7 @@ function PAGE:Load(contentFrame)
 	end
 
 	--Create the search box
-	local searchBox = BU3.UI.Elements.CreateTextEntry("Search...", self.mirrorPanel, true, true)
+	local searchBox = BU3.UI.Elements.CreateTextEntry(BU3.Lang.Get("SEARCH"), self.mirrorPanel, true, true)
 	searchBox:SetPos(550, 24)
 	searchBox:SetSize(280 - 20, 37)
 	searchBox:SetUpdateOnType(true)
