@@ -15,7 +15,7 @@ function PAGE:Load(contentFrame)
 	end
 
 	--Now do all the text info
-	local invValue = BU3.UI.Elements.CreateInfoPanel(BU3.Inventory.ItemCount(), "Number Of Items", self.mirrorPanel)
+	local invValue = BU3.UI.Elements.CreateInfoPanel(BU3.Inventory.ItemCount(), BU3.Lang.Get("NOI"), self.mirrorPanel)
 	invValue:SetPos(25, 85)
 	invValue:SetSize(380, 130)
 
@@ -26,7 +26,7 @@ function PAGE:Load(contentFrame)
 	if stats["gift"] ~= nil then
 		val = stats["gift"]
 	end
-	local otherVal = BU3.UI.Elements.CreateInfoPanel(val, BU3.Lang.Get("NOTT"), self.mirrorPanel)
+	local otherVal = BU3.UI.Elements.CreateInfoPanel(val, BU3.Lang.Get("NOIT"), self.mirrorPanel)
 	otherVal:SetPos(422, 85)
 	otherVal:SetSize(380, 130)
 
